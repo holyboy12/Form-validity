@@ -250,10 +250,17 @@
         valid = false;
       } else err.password.style.display = "none";
 
-      if (confirmPassword.value.trim() === "" || password.value !== confirmPassword.value) {
+      if (confirmPassword.value.trim() === "") {
+        err.confirm.textContent = "This field should be filled*";
         err.confirm.style.display = "block";
         valid = false;
-      } else err.confirm.style.display = "none";
+      } else if (password.value !== confirmPassword.value) {
+        err.confirm.textContent = "Passwords do not match*";
+        err.confirm.style.display = "block";
+        valid = false;
+      } else {
+        err.confirm.style.display = "none";
+      }
 
       // Display data
       if (valid) {
